@@ -1,4 +1,3 @@
-using System;
 using Source.Scripts.Core.Services;
 using Source.Scripts.Fishing;
 using Source.Scripts.InputSystems;
@@ -8,32 +7,30 @@ using Zenject;
 namespace Source.Scripts.Effects
 {
     [RequireComponent(typeof(Animator))]
-    public class SwimmerEffects : MonoBehaviour, IPause
+    public class CatEffects : MonoBehaviour, IPause
     {
         private Animator _animator;
         private PauseService _pauseService;
-
-        private static readonly int Direction = Animator.StringToHash("Direction");
-        private static readonly int OnMinigameStart = Animator.StringToHash("OnMinigameStart");
+        
+        private static readonly int OnHook = Animator.StringToHash("OnHook");
         private static readonly int OnMinigameEnd = Animator.StringToHash("OnMinigameEnd");
-        private static readonly int OnFishSpawned = Animator.StringToHash("OnFishSpawned");
+        private static readonly int Direction = Animator.StringToHash("Direction");
 
         [Inject]
-        public void Constructor(FishingMinigame fishingMinigame, GestureReceiver gestureReceiver, PauseService pauseService)
+        public void Constructor(FishingMinigame fishingMinigame, GestureReceiver gestureReceiver, FishingRod fishingRod, PauseService pauseService)
         {
             _pauseService = pauseService;
             
-            fishingMinigame.OnFishSpawned += () => { _animator.SetTrigger(OnFishSpawned); };
-            fishingMinigame.OnMinigameStart += () => { _animator.SetTrigger(OnMinigameStart); };
+            fishingRod.OnHooked += () => { _animator.SetTrigger(OnHook); };
             fishingMinigame.OnMinigameEnd += () => { _animator.SetTrigger(OnMinigameEnd); };
             gestureReceiver.OnSwipe += (direction => { _animator.SetFloat(Direction, direction.x); });
         }
-
+        
         private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
-
+        
         private void OnEnable()
         {
             _pauseService.AddPause(this);
@@ -46,12 +43,12 @@ namespace Source.Scripts.Effects
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public void Resume()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }
