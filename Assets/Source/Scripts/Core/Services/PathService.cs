@@ -21,5 +21,10 @@ namespace Source.Scripts.Core.Services
         {
             public const string FISH = "Prefabs/GameObjects/Fish";
         }
+        
+        public class UI
+        {
+            public const string FishingProgressBar = "Prefabs/UI/FishingProgressBar";
+        }
     }
 }

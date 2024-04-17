@@ -2,6 +2,7 @@ using Source.Scripts.Core.Data;
 using Source.Scripts.Core.Services;
 using Source.Scripts.Fishing;
 using Source.Scripts.InputSystems;
+using Source.Scripts.UI;
 using UnityEngine;
 using Zenject;
 

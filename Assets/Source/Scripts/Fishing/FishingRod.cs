@@ -12,6 +12,10 @@ namespace Source.Scripts.Fishing
     {
         public Action OnHooked;
 
+        [field: SerializeField] public float SwimmerSpeed { get; private set; }
+        [field: SerializeField] public float FishingPower { get; private set; }
+        [field: SerializeField] public float FishingAccuracyMultiplier { get; private set; }
+        
         [SerializeField] private float _minWaitTime;
         [SerializeField] private float _maxWaitTime;
 
@@ -60,7 +64,7 @@ namespace Source.Scripts.Fishing
 
         private IEnumerator CountdownTick()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
             _gestureReceiver.OnSwipe -= Hook;
         }
 

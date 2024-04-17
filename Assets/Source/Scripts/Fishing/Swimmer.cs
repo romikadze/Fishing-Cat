@@ -1,4 +1,5 @@
 using System;
+using Source.Scripts.Core.Data;
 using Source.Scripts.Core.Services;
 using Source.Scripts.InputSystems;
 using UnityEngine;
@@ -10,22 +11,26 @@ namespace Source.Scripts.Fishing
     public class Swimmer : MonoBehaviour, IPause
     {
         public Action<bool> OnFishInTrigger;
-        
+
         private Rigidbody2D _rigidbody;
         private GestureReceiver _gestureReceiver;
         private PauseService _pauseService;
+        private FishingRod _fishingRod;
 
         private const float BASE_SPEED = 50;
 
         [Inject]
-        public void Constructor(GestureReceiver gestureReceiver, PauseService pauseService)
+        public void Constructor(GestureReceiver gestureReceiver, PauseService pauseService, FishingRod fishingRod,
+            FishingMinigame fishingMinigame)
         {
             _gestureReceiver = gestureReceiver;
             _pauseService = pauseService;
-            
-            _gestureReceiver.OnSwipe += Move;
+            _fishingRod = fishingRod;
+
+            fishingMinigame.OnMinigameStart += EnableMovement;
+            fishingMinigame.OnMinigameEnd += DisableMovement;
         }
-        
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -46,7 +51,7 @@ namespace Source.Scripts.Fishing
         {
             if (other.TryGetComponent(out Fish fish))
             {
-                OnFishInTrigger?.Invoke(true);   
+                OnFishInTrigger?.Invoke(true);
             }
         }
 
@@ -54,13 +59,23 @@ namespace Source.Scripts.Fishing
         {
             if (other.TryGetComponent(out Fish fish))
             {
-                OnFishInTrigger?.Invoke(false);   
+                OnFishInTrigger?.Invoke(false);
             }
+        }
+
+        private void EnableMovement()
+        {
+            _gestureReceiver.OnSwipe += Move;
+        }
+
+        private void DisableMovement()
+        {
+            _gestureReceiver.OnSwipe -= Move;
         }
 
         private void Move(Vector2 direction)
         {
-            _rigidbody.AddForce(direction * BASE_SPEED);
+            _rigidbody.AddForce(direction * BASE_SPEED * _fishingRod.SwimmerSpeed);
         }
 
         public void Pause()

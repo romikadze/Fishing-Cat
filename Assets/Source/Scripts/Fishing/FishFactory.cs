@@ -7,7 +7,7 @@ namespace Source.Scripts.Fishing
     public class FishFactory : PlaceholderFactory<string, Fish>
     {
         private readonly DiContainer _container;
-
+        
         public FishFactory(DiContainer container)
         {
             _container = container;
@@ -17,6 +17,11 @@ namespace Source.Scripts.Fishing
         {
             return _container.InstantiatePrefabResourceForComponent<Fish>(PathService.Prefabs.FISH, 
                 position, rotation, parent);
+        }
+
+        public void Despawn(Fish fish)
+        {
+            Object.Destroy(fish.gameObject);
         }
     }
 }
