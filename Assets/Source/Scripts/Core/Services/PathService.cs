@@ -19,7 +19,7 @@ namespace Source.Scripts.Core.Services
 
         public class Prefabs
         {
-            public const string FISH = "Prefabs/GameObjects/Fish";
+            public const string FISH = "Prefabs/GameObjects/Space Carp";
         }
         
         public class UI

@@ -12,9 +12,9 @@ namespace Source.Scripts.InputSystems
         public Action<Vector2> OnSwipe;
 
         [SerializeField] private float _minSwipeMagnitude;
-        private float _maxSwipeMagnitude = 5f;
+        private float _maxSwipeMagnitude = 500f; // 250 - 600
         private Vector2 _pointerDownPosition;
-        
+
         [Inject]
         public void Constructor(SaveService saveService)
         {
@@ -33,10 +33,11 @@ namespace Source.Scripts.InputSystems
             Vector2 swipe = eventData.position - _pointerDownPosition;
             if (swipe.magnitude >= _minSwipeMagnitude)
             {
-                if (swipe.magnitude > 3)//_maxSwipeMagnitude)
-                    swipe = swipe.normalized * 3;//_maxSwipeMagnitude;
-
-                OnSwipe?.Invoke(swipe.normalized);
+                float magnitude = swipe.magnitude / _maxSwipeMagnitude;
+                if (magnitude > 1)
+                    magnitude = 1;
+                
+                OnSwipe?.Invoke(swipe.normalized * magnitude);
             }
         }
     }

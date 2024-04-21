@@ -68,6 +68,7 @@ namespace Source.Scripts.Fishing
         private void FishCaught()
         {
             OnFishCaught?.Invoke(_fish);
+            Debug.Log("Fish caught");
         }
 
         private IEnumerator ProgressTick()
@@ -92,7 +93,6 @@ namespace Source.Scripts.Fishing
 
         private float GetFishingCoefficient()
         {
-            Debug.Log(_fishingRod.FishingPower / _fish.Power);
             return _fishingRod.FishingPower / _fish.Power;
         }
     }
