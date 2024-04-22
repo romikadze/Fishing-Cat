@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Source.Scripts.Core.Services;
+using UnityEngine;
 
 namespace Source.Scripts.Core.Data
 {
@@ -21,9 +21,11 @@ namespace Source.Scripts.Core.Data
             return false;
         }
 
-        public bool TryAddData(string id, SaveData data)
+        public void AddData(string id, SaveData data)
         {
-            return _data.TryAdd(id, data);
+            if (_data.ContainsKey(id))
+                _data.Remove(id);
+            _data[id] = data;
         }
 
         public bool TryRemoveData(string id)

@@ -14,7 +14,7 @@ namespace Source.Scripts.UI
         public void SetupIcon(Fish fish)
         {
             _icon.sprite = fish.FishSprite;
-            _nameText.text = fish.Name;
+            _nameText.text = fish.FishName;
         }
         
         public void UpdateCount(int count)

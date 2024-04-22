@@ -15,7 +15,7 @@ namespace Source.Scripts.Fishing
 
         public Fish Spawn(Vector3 position, Quaternion rotation, Transform parent)
         {
-            return _container.InstantiatePrefabResourceForComponent<Fish>(PathService.Prefabs.FISH, 
+            return _container.InstantiatePrefabResourceForComponent<Fish>(PathService.Prefabs.FISH_PATH + "Space Carp", 
                 position, rotation, parent);
         }
 

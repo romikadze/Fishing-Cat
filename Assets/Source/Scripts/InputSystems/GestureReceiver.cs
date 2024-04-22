@@ -19,7 +19,7 @@ namespace Source.Scripts.InputSystems
         public void Constructor(SaveService saveService)
         {
             if (saveService.CurrentSaveData
-                .TryGetData(PathService.Data.SETTINGS_ID, out SettingsData settingsData))
+                .TryGetData(PathService.Data.SETTINGS, out SettingsData settingsData))
                 _maxSwipeMagnitude = settingsData.MaxSwipeMagnitude;
         }
 

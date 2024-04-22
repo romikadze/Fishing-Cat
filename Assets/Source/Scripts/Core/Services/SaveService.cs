@@ -11,22 +11,36 @@ namespace Source.Scripts.Core.Services
         public Action OnSave;
 
         public FileSaveData CurrentSaveData { get; private set; } = new FileSaveData();
-        
+
+        private void Awake()
+        {
+            Load();
+            Debug.Log("Load: " + CurrentSaveData);
+        }
+
+        private void OnApplicationQuit()
+        {
+            Save();
+        }
+
         public void Save()
         {
+            Debug.Log("Save");
             OnSave?.Invoke();
-
-            using FileStream file = File.Create(PathService.Data.FilePath);
-            new BinaryFormatter().Serialize(file, CurrentSaveData);
+            
+            BinaryFormatter formatter = new BinaryFormatter();
+            using FileStream file = new FileStream(PathService.Data.FilePath, FileMode.Create);
+            formatter.Serialize(file, CurrentSaveData);
         }
 
         public FileSaveData Load()
         {
             if (!IsFileExists())
-                Save();
+                return CurrentSaveData;
 
-            using FileStream file = File.Open(PathService.Data.FilePath, FileMode.Open);
-            return CurrentSaveData = (FileSaveData)new BinaryFormatter().Deserialize(file);
+            BinaryFormatter formatter = new BinaryFormatter();
+            using FileStream file = new FileStream(PathService.Data.FilePath, FileMode.Open);
+            return CurrentSaveData = (FileSaveData)formatter.Deserialize(file);
         }
 
         public bool IsFileExists()

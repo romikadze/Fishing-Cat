@@ -68,7 +68,6 @@ namespace Source.Scripts.Fishing
         private void FishCaught()
         {
             OnFishCaught?.Invoke(_fish);
-            Debug.Log("Fish caught");
         }
 
         private IEnumerator ProgressTick()

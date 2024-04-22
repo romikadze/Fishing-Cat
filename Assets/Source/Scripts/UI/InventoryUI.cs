@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Source.Scripts.Core.Services;
 using Source.Scripts.Fishing;
 using UnityEngine;
 
@@ -19,17 +20,18 @@ namespace Source.Scripts.UI
             _inventory.OnFishCountChange += UpdateFishIcon;
         }
 
-        private void UpdateFishIcon(Fish fish, int count)
+        private void UpdateFishIcon(string fishName, int count)
         {
-            if (!_fishIcons.ContainsKey(fish.Name))
+            if (!_fishIcons.ContainsKey(fishName))
             {
                 FishIcon fishIcon = Instantiate(_fishIconPrefab, _contentTransform);
-                fishIcon.SetupIcon(fish);
+                Debug.Log(PathService.Prefabs.FISH_PATH + fishName);
+                fishIcon.SetupIcon(Resources.Load<Fish>(PathService.Prefabs.FISH_PATH + fishName));
 
-                _fishIcons.Add(fish.Name, fishIcon);
+                _fishIcons.Add(fishName, fishIcon);
             }
 
-            _fishIcons[fish.Name].UpdateCount(count);
+            _fishIcons[fishName].UpdateCount(count);
         }
     }
 }

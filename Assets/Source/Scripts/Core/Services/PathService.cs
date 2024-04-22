@@ -13,13 +13,15 @@ namespace Source.Scripts.Core.Services
         
         public class Data
         {
-            public static readonly string FilePath = Application.persistentDataPath + "/saveData.json";
-            public const string SETTINGS_ID = "Settings";
+            public static readonly string FilePath = Application.persistentDataPath + "/saveData.data";
+            public const string INVENTORY = "Inventory";
+            public const string FISHING_ROD = "FishingRod";
+            public const string SETTINGS = "Settings";
         }
 
         public class Prefabs
         {
-            public const string FISH = "Prefabs/GameObjects/Space Carp";
+            public const string FISH_PATH = "Prefabs/GameObjects/";
         }
         
         public class UI
