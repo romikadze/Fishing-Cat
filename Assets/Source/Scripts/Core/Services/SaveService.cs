@@ -15,7 +15,6 @@ namespace Source.Scripts.Core.Services
         private void Awake()
         {
             Load();
-            Debug.Log("Load: " + CurrentSaveData);
         }
 
         private void OnApplicationQuit()
@@ -25,7 +24,6 @@ namespace Source.Scripts.Core.Services
 
         public void Save()
         {
-            Debug.Log("Save");
             OnSave?.Invoke();
             
             BinaryFormatter formatter = new BinaryFormatter();

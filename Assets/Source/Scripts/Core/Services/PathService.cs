@@ -21,12 +21,13 @@ namespace Source.Scripts.Core.Services
 
         public class Prefabs
         {
-            public const string FISH_PATH = "Prefabs/GameObjects/";
+            public const string FISHES = "Prefabs/Fishes/";
+            public const string FISH_LIST = "Prefabs/Fishes/FishList";
         }
         
         public class UI
         {
-            public const string FishingProgressBar = "Prefabs/UI/FishingProgressBar";
+          
         }
     }
 }

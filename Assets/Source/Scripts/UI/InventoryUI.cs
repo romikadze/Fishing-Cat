@@ -25,8 +25,8 @@ namespace Source.Scripts.UI
             if (!_fishIcons.ContainsKey(fishName))
             {
                 FishIcon fishIcon = Instantiate(_fishIconPrefab, _contentTransform);
-                Debug.Log(PathService.Prefabs.FISH_PATH + fishName);
-                fishIcon.SetupIcon(Resources.Load<Fish>(PathService.Prefabs.FISH_PATH + fishName));
+            
+                fishIcon.SetupIcon(Resources.Load<Fish>(PathService.Prefabs.FISHES + fishName));
 
                 _fishIcons.Add(fishName, fishIcon);
             }

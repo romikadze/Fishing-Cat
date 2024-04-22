@@ -24,6 +24,9 @@ namespace Source.Scripts.Core
             Container.Bind<SaveService>()
                 .FromComponentInNewPrefabResource(PathService.Services.SAVE_SERVICE)
                 .AsSingle();
+            Container.Bind<FishList>()
+                .FromComponentInNewPrefabResource(PathService.Prefabs.FISH_LIST)
+                .AsSingle();
             Container.Bind<GestureReceiver>()
                 .FromInstance(_gestureReceiver)
                 .AsSingle();

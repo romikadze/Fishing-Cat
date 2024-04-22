@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using Source.Scripts.Core.Data;
+using Source.Scripts.Core.Services;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Source.Scripts.Fishing
 {
-    public class FishingMinigame : MonoBehaviour
+    public class FishingMinigame : MonoBehaviour, IPause
     {
         public Action OnFishSpawned;
         public Action OnMinigameStart;
@@ -94,5 +95,17 @@ namespace Source.Scripts.Fishing
         {
             return _fishingRod.FishingPower / _fish.Power;
         }
+        
+        #region Pause
+        public void Pause()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Resume()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

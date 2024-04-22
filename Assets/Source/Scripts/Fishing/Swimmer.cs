@@ -1,5 +1,4 @@
 using System;
-using Source.Scripts.Core.Data;
 using Source.Scripts.Core.Services;
 using Source.Scripts.InputSystems;
 using UnityEngine;
@@ -78,6 +77,7 @@ namespace Source.Scripts.Fishing
             _rigidbody.AddForce(direction * BASE_SPEED * _fishingRod.SwimmerSpeed);
         }
 
+        #region Pause
         public void Pause()
         {
             throw new NotImplementedException();
@@ -87,5 +87,6 @@ namespace Source.Scripts.Fishing
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

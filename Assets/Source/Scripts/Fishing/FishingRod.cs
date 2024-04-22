@@ -68,6 +68,7 @@ namespace Source.Scripts.Fishing
             _gestureReceiver.OnSwipe -= Hook;
         }
 
+        #region Pause
         public void Pause()
         {
             throw new NotImplementedException();
@@ -77,5 +78,6 @@ namespace Source.Scripts.Fishing
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

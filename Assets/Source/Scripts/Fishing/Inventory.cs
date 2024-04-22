@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Source.Scripts.Core.Data;
 using Source.Scripts.Core.Services;
-using Source.Scripts.Fishing;
 using UnityEngine;
 using Zenject;
 
-namespace Source.Scripts
+namespace Source.Scripts.Fishing
 {
     public class Inventory : MonoBehaviour
     {
@@ -29,10 +27,9 @@ namespace Source.Scripts
             GetInventoryData();
         }
 
-        private void OnApplicationPause(bool pauseStatus)
+        private void OnApplicationQuit()
         {
-            if (pauseStatus)
-                AddInventoryData();
+            AddInventoryData();
         }
 
         private void AddFish(Fish fish)
@@ -70,8 +67,8 @@ namespace Source.Scripts
             foreach (var fish in _fishes)
             {
                 inventoryData.AddItem(fish.Key, fish.Value);
-                Debug.Log(fish.Key + "/" + fish.Value);
             }
+
             _saveService.CurrentSaveData.AddData(PathService.Data.INVENTORY, inventoryData);
         }
 
